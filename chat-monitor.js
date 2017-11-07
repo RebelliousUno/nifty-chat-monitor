@@ -17,7 +17,7 @@ var qs = getQS(location.search);
 
 waitForKeyElements (".chat-lines", actionFunction);
 function actionFunction(){
-    if(typeof qs.reverse !== 'undefined'){
+    if(!!typeof qs.reverse){
         $( ".tse-content" ).addClass('reverse');
     }
     // The node to be monitored
@@ -26,7 +26,7 @@ function actionFunction(){
     var observer = new MutationObserver(function( mutations ) {
         mutations.forEach(function( mutation ) {
             var newNodes = mutation.addedNodes; // DOM NodeList
-            if( newNodes !== null ) { // If there are new nodes added
+            if( newNodes ) { // If there are new nodes added
                 var $node = $(newNodes[0]);
                 if( $node.hasClass( "ember-view" ) ) {
 
